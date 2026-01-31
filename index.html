@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محرك حسام للبحث الأكاديمي الشامل</title>
+    <style>
+        :root { --main-color: #1a73e8; --bg-color: #f8f9fa; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg-color); margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        .search-card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 90%; max-width: 550px; text-align: center; }
+        h1 { color: var(--main-color); margin-bottom: 25px; font-size: 24px; }
+        input { width: 100%; padding: 15px; margin-bottom: 20px; border: 2px solid #eee; border-radius: 12px; font-size: 16px; outline: none; box-sizing: border-box; transition: 0.3s; }
+        input:focus { border-color: var(--main-color); }
+        .main-btn { width: 100%; padding: 15px; background: var(--main-color); color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; margin-bottom: 15px; transition: 0.3s; }
+        .main-btn:hover { background: #1557b0; }
+        .grid-sites { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .site-btn { padding: 10px; background: #f1f3f4; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; color: #3c4043; }
+        .site-btn:hover { background: #e8eaed; }
+        footer { margin-top: 25px; font-size: 12px; color: #70757a; border-top: 1px solid #eee; pt-15px; padding-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="search-card">
+        <h1>محرك حسام للبحث الشامل</h1>
+        <p style="color: #5f6368; margin-bottom: 20px;">ابحث في كافة المصادر الأكاديمية بضغطة واحدة</p>
+        
+        <input type="text" id="q" placeholder="أدخل عنوان الرسالة أو الكتاب...">
+        
+        <button class="main-btn" onclick="searchAll()">بحث شامل في جميع المواقع</button>
+        
+        <div class="grid-sites">
+            <button class="site-btn" onclick="openMe('google')">Google Scholar</button>
+            <button class="site-btn" onclick="openMe('iq')">المستودع العراقي</button>
+            <button class="site-btn" onclick="openMe('archive')">Archive.org</button>
+            <button class="site-btn" onclick="openMe('base')">BASE (عالمي)</button>
+        </div>
+        
+        <footer>إعداد حسام - خدمة مجانية لطلاب العلم والباحثين</footer>
+    </div>
+
+    <script>
+        function getQ() { return document.getElementById('q').value; }
+        
+        function searchAll() {
+            const val = getQ();
+            if(!val) return alert("يرجى كتابة عنوان للبحث");
+            window.open('https://scholar.google.com/scholar?q=' + val, '_blank');
+            window.open('http://www.iqdr.iq/search?query=' + val, '_blank');
+            window.open('https://archive.org/details/texts?and[]=' + val, '_blank');
+            window.open('https://www.base-search.net/Search/Results?lookfor=' + val, '_blank');
+        }
+
+        function openMe(s) {
+            const val = getQ();
+            if(!val) return alert("يرجى كتابة عنوان للبحث");
+            let url = "";
+            if(s==='google') url = 'https://scholar.google.com/scholar?q=' + val;
+            if(s==='iq') url = 'http://www.iqdr.iq/search?query=' + val;
+            if(s==='archive') url = 'https://archive.org/details/texts?and[]=' + val;
+            if(s==='base') url = 'https://www.base-search.net/Search/Results?lookfor=' + val;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
